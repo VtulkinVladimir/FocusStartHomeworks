@@ -5,6 +5,15 @@
 //  Created by Владимир Втулкин on 28.10.2021.
 //
 import Foundation
+
+enum Commands: String, CaseIterable
+{
+	case add = "Добавление нового автомобиля"
+	case print = "Вывод списка добавленных автомобилей"
+	case filtered = "Вывод списка автомобилей с использованием фильтра по типу кузова"
+	case exit = "Выход"
+}
+
 var cars = [Car]()
 var run = true
 
@@ -37,17 +46,21 @@ func greeting() {
 	}
 }
 
+func buildMenu() -> String {
+	var result = "\n Выберите действие"
+	for (index, command) in Commands.allCases.enumerated() {
+		result += "\n\(index) - \(command.rawValue)"
+	}
+	return result
+}
+
 func start() {
-	switch strongReadLine("""
-	1) Добавление нового автомобиля
-	2) Вывод списка добавленных автомобилей
-	3) Вывод списка автомобилей с использованием фильтра по типу кузова
-	0) Выход
-	""") {
-	case "1" : addCar()
-	case "2": printAllInfo()
-	case "3": sorting()
-	case "0" : run = false
+	let menuString = buildMenu()
+	switch strongReadLine(menuString) {
+	case "0" : addCar()
+	case "1" : printAllInfo()
+	case "2" : filtration()
+	case "3" : run = false
 	default: start()
 	}
 }
@@ -78,15 +91,17 @@ func getYear() -> Int? {
 	}
 }
 
+func buildBodyList() -> String {
+	var resultString = "\n Выберите тип кузова:"
+	for (index, body) in Body.allCases.enumerated() {
+		resultString += "\n\(index) - \(body.rawValue)"
+	}
+	return resultString
+}
+
 func choiseBody() -> Body? {
-	let response = strongReadLine("""
-	Выберите тип кузова из предложенных ниже:
-	1) Седан
-	2) Купе
-	3) Универсал
-	4) Джип
-	5) Хэтчбэк
-	""")
+	let text = buildBodyList()
+	let response = strongReadLine(text)
 	guard let index = Int(response) else { return nil }
 	return Body(index: index)
 }
@@ -116,17 +131,15 @@ func printInfo(car: Car) {
 	print(info)
 }
 
-func sorting() {
+func filtration() {
 	if let body = choiseBody() {
-		sort(body: body)
-	}
-}
-
-func sort(body: Body) {
-	for car in cars {
-		if car.body == body {
-			printInfo(car: car)
+		cars.forEach { car in
+			if car.body == body {
+				printInfo(car: car)
+			}
 		}
+	} else {
+		print("Ошибка ввода данных")
 	}
 }
 

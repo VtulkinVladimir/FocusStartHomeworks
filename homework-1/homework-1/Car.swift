@@ -14,7 +14,7 @@ enum Body: String, CaseIterable
 	
 	init?(index: Int) {
 		for (indexEnumerated, value) in Self.allCases.enumerated() {
-			if (indexEnumerated + 1) == index {
+			if (indexEnumerated) == index {
 				self = value
 				return
 			}
