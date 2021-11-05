@@ -133,13 +133,7 @@ func printInfo(car: Car) {
 
 func filtration() {
 	if let body = choiseBody() {
-		cars.forEach { car in
-			if car.body == body {
-				printInfo(car: car)
-			}
-		}
-	} else {
-		print("Ошибка ввода данных")
+		cars.filter { $0.body == body }.forEach { printInfo(car: $0) }
 	}
 }
 
