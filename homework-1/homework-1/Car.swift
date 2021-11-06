@@ -6,11 +6,11 @@
 //
 enum Body: String, CaseIterable
 {
-	case sedan
-	case coupe
-	case universal
-	case suv
-	case hatcBack
+	case sedan = "Седан"
+	case coupe = "Купе"
+	case universal = "Универсал"
+	case suv = "Джип"
+	case hatcBack = "Хэтчбэк"
 	
 	init?(index: Int) {
 		for (indexEnumerated, value) in Self.allCases.enumerated() {
