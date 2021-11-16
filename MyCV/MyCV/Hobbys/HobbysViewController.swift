@@ -7,10 +7,9 @@
 
 import UIKit
 
-class HobbysViewController: UIViewController
+final class HobbysViewController: UIViewController
 {
-	override func viewDidLoad() {
-		super.viewDidLoad()
+	override func loadView() {
 		self.view = HobbysView()
 	}
 }

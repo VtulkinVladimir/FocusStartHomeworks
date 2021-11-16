@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	var window: UIWindow?
 	
@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		let window = UIWindow(windowScene: scene)
 		self.window = window
 		
-		window.rootViewController =  MainTabBar(nibName: nil, bundle: nil)
+		window.rootViewController =  MainTabBar()
 		window.makeKeyAndVisible()
 	}
 }

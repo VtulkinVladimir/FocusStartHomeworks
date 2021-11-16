@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HobbysView: UIView
+final class HobbysView: UIView
 {
 	private let imageView = UIImageView()
 	private let hobby1Label = UILabel()
@@ -24,16 +24,15 @@ class HobbysView: UIView
 	}
 	
 	func configureInfo() {
-		let storegeHobbys = MyHobbys()
-		self.imageView.image = storegeHobbys.image
+		self.imageView.image = MyHobbys.image
 		
-		self.hobby1Label.text = storegeHobbys.hobby1
+		self.hobby1Label.text = MyHobbys.hobby1
 		self.hobby1Label.lineBreakMode = .byWordWrapping
-		self.hobby1Label.numberOfLines = 0
+		self.hobby1Label.numberOfLines = NumbersOfLineForUILabel.allLabels
 
-		self.hobby2Label.text = storegeHobbys.hobby2
+		self.hobby2Label.text = MyHobbys.hobby2
 		self.hobby2Label.lineBreakMode = .byWordWrapping
-		self.hobby2Label.numberOfLines = 0
+		self.hobby2Label.numberOfLines = NumbersOfLineForUILabel.allLabels
 	}
 	
 	func configureView() {

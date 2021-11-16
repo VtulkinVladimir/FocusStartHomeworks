@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SkillsView: UIView
+final class SkillsView: UIView
 {
 	private let imageView = UIImageView()
 	private let skillsLabel = UILabel()
@@ -24,16 +24,15 @@ class SkillsView: UIView
 	}
 	
 	func configureInfo() {
-		let storegeSkills = MySkills()
-		self.imageView.image = storegeSkills.image
+		self.imageView.image = MySkills.image
 		
-		self.skillsLabel.text = storegeSkills.skills
+		self.skillsLabel.text = MySkills.skills
 		self.skillsLabel.lineBreakMode = .byWordWrapping
-		self.skillsLabel.numberOfLines = 0
+		self.skillsLabel.numberOfLines = NumbersOfLineForUILabel.allLabels
 		
-		self.descriptionLabel.text = storegeSkills.description
+		self.descriptionLabel.text = MySkills.description
 		self.descriptionLabel.lineBreakMode = .byWordWrapping
-		self.descriptionLabel.numberOfLines = 0
+		self.descriptionLabel.numberOfLines = NumbersOfLineForUILabel.allLabels
 	}
 	
 	func configureView() {

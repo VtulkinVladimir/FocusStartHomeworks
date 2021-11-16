@@ -6,11 +6,11 @@
 //
 import UIKit
 
-class MyInfo
+struct MyInfo
 {
-	let name = "Vladimir"
-	let lastName = "Vtulkin"
-	let age = "Age: 25"
-	let city = "Novosibirsk"
-	let avatar = UIImage(named: "avatar")
+	static let name = "Vladimir"
+	static let lastName = "Vtulkin"
+	static let age = "Age: 25"
+	static let city = "Novosibirsk"
+	static let avatar = UIImage(named: "avatar")
 }

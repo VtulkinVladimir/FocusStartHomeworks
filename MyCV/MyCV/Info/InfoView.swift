@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class InfoView: UIView
+final class InfoView: UIView
 {
 	private let avatarImageView = UIImageView()
 	private let nameLabel = UILabel()
@@ -25,20 +25,19 @@ class InfoView: UIView
 	}
 	
 	private func configureInfo() {
-		let infoStorage = MyInfo()
-		self.avatarImageView.image = infoStorage.avatar
+		self.avatarImageView.image = MyInfo.avatar
 		
-		self.nameLabel.text = infoStorage.name
-		self.nameLabel.font = .systemFont(ofSize: 40)
+		self.nameLabel.text = MyInfo.name
+		self.nameLabel.font = .systemFont(ofSize: InfoViewFontSize.fullName)
 		
-		self.lastNameLabel.text = infoStorage.lastName
-		self.lastNameLabel.font = .systemFont(ofSize: 40)
+		self.lastNameLabel.text = MyInfo.lastName
+		self.lastNameLabel.font = .systemFont(ofSize: InfoViewFontSize.fullName)
 		
-		self.cityLabel.text = infoStorage.city
-		self.cityLabel.font = .systemFont(ofSize: 25)
+		self.cityLabel.text = MyInfo.city
+		self.cityLabel.font = .systemFont(ofSize: InfoViewFontSize.city)
 		
-		self.ageLabel.text = infoStorage.age
-		self.ageLabel.font = .systemFont(ofSize: 35)
+		self.ageLabel.text = MyInfo.age
+		self.ageLabel.font = .systemFont(ofSize: InfoViewFontSize.age)
 	}
 	
 	private func configureView() {

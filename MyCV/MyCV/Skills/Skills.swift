@@ -6,11 +6,11 @@
 //
 import UIKit
 
-class MySkills
+struct MySkills
 {
-	let image = UIImage(named: "work")
+	static let image = UIImage(named: "work")
 	
-	let skills = "Имею базовые навыки разработки приложений на языке SWIFT в среде XCode. Основы архитектуры, URLSession, SnapKit, CoreData"
+	static let skills = "Имею базовые навыки разработки приложений на языке SWIFT в среде XCode. Основы архитектуры, URLSession, SnapKit, CoreData"
 	
-	let description = "Хочу получить профессиональные навыки и попасть в команду ЦФТ для дальнейшего проффесионального роста."
+	static let description = "Хочу получить профессиональные навыки и попасть в команду ЦФТ для дальнейшего проффесионального роста."
 }

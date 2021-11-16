@@ -7,10 +7,9 @@
 
 import UIKit
 
-class SkillsViewController: UIViewController
-{
-	override func viewDidLoad() {
-		super.viewDidLoad()
+final class SkillsViewController: UIViewController
+{	
+	override func loadView() {
 		self.view = SkillsView()
 	}
 }
