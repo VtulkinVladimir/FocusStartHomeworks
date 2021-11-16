@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B6BA7736274425E200E12FBE /* InfoViewFontSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BA7735274425E200E12FBE /* InfoViewFontSize.swift */; };
+		B6BA7738274427E700E12FBE /* NumbersOfLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BA7737274427E700E12FBE /* NumbersOfLine.swift */; };
 		B6D0139F273E001200B36A09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D0139E273E001200B36A09 /* AppDelegate.swift */; };
 		B6D013A1273E001300B36A09 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D013A0273E001300B36A09 /* SceneDelegate.swift */; };
 		B6D013A3273E001300B36A09 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D013A2273E001300B36A09 /* InfoViewController.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B6BA7735274425E200E12FBE /* InfoViewFontSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewFontSize.swift; sourceTree = "<group>"; };
+		B6BA7737274427E700E12FBE /* NumbersOfLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersOfLine.swift; sourceTree = "<group>"; };
 		B6D0139B273E001200B36A09 /* MyCV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6D0139E273E001200B36A09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6D013A0273E001300B36A09 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +81,7 @@
 				B6D013C0273ECFCE00B36A09 /* Hobbys */,
 				B6D013C7273ED00E00B36A09 /* Delegates */,
 				B6D013B2273E041500B36A09 /* MainTabBar.swift */,
+				B6BA7737274427E700E12FBE /* NumbersOfLine.swift */,
 				B6D013A7273E001500B36A09 /* Assets.xcassets */,
 				B6D013A9273E001500B36A09 /* LaunchScreen.storyboard */,
 				B6D013AC273E001500B36A09 /* Info.plist */,
@@ -87,6 +92,7 @@
 		B6D013BE273ECFAB00B36A09 /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				B6BA7735274425E200E12FBE /* InfoViewFontSize.swift */,
 				B6D013B8273ECF3B00B36A09 /* InfoView.swift */,
 				B6D013A2273E001300B36A09 /* InfoViewController.swift */,
 				B6D013C1273ECFE600B36A09 /* MyInfo.swift */,
@@ -192,12 +198,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6BA7736274425E200E12FBE /* InfoViewFontSize.swift in Sources */,
 				B6D013BB273ECF4A00B36A09 /* SkillsView.swift in Sources */,
 				B6D013A3273E001300B36A09 /* InfoViewController.swift in Sources */,
 				B6D013C6273ECFFC00B36A09 /* Hobbys.swift in Sources */,
 				B6D013B5273E0C4E00B36A09 /* SkillsViewController.swift in Sources */,
 				B6D013C2273ECFE600B36A09 /* MyInfo.swift in Sources */,
 				B6D013B3273E041500B36A09 /* MainTabBar.swift in Sources */,
+				B6BA7738274427E700E12FBE /* NumbersOfLine.swift in Sources */,
 				B6D0139F273E001200B36A09 /* AppDelegate.swift in Sources */,
 				B6D013B7273E0CC700B36A09 /* HobbysViewController.swift in Sources */,
 				B6D013C4273ECFF100B36A09 /* Skills.swift in Sources */,
