@@ -7,21 +7,21 @@
 
 import UIKit
 
-class MainTabBar: UITabBarController
+final class MainTabBar: UITabBarController
 {
 	override func viewDidLoad() {
 		self.tabBar.backgroundColor = .orange
 
-		let infoVc = InfoViewController(nibName: nil, bundle: nil)
-		let item = UITabBarItem(title: "Info", image: nil, tag: 1)
+		let infoVc = InfoViewController()
+		let item = UITabBarItem(title: nil, image: UIImage(named: "InfoLogo"), tag: 1)
 		infoVc.tabBarItem = item
 		
-		let skillsVc = SkillsViewController(nibName: nil, bundle: nil)
-		let item2 = UITabBarItem(title: "Skills", image: nil, tag: 2)
+		let skillsVc = SkillsViewController()
+		let item2 = UITabBarItem(title: nil, image: UIImage(named: "SkillsLogo"), tag: 2)
 		skillsVc.tabBarItem = item2
 		
-		let hobbysVc = HobbysViewController(nibName: nil, bundle: nil)
-		let item3 = UITabBarItem(title: "Hobbys", image: nil, tag: 3)
+		let hobbysVc = HobbysViewController()
+		let item3 = UITabBarItem(title: nil, image: UIImage(named: "HobbysLogo"), tag: 3)
 		hobbysVc.tabBarItem = item3
 		
 		let controllers = [infoVc, skillsVc, hobbysVc]
