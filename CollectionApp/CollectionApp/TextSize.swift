@@ -11,4 +11,5 @@ struct TextSize
 	static let carCollectionCellTextSize: CGFloat = 20
 	static let priceDetailTextSize: CGFloat = 35
 	static let carDetailTextSize: CGFloat = 30
+	static let carDetailHorizontalTextSize: CGFloat = 45
 }

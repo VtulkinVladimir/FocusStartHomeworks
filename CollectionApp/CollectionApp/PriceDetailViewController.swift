@@ -38,11 +38,11 @@ final class PriceDetailViewController: UIViewController
 		self.dollarPricelabel.font = .boldSystemFont(ofSize: self.textSize)
 		self.dollarPricelabel.translatesAutoresizingMaskIntoConstraints = false
 
-		self.rubPriceLabel.text = "Rubles: \(Double(self.price * 70))"
+		self.rubPriceLabel.text = "Rubles: \(Double(self.price) * ExchengeRates.usdToRub)"
 		self.rubPriceLabel.font = .boldSystemFont(ofSize: self.textSize)
 		self.rubPriceLabel.translatesAutoresizingMaskIntoConstraints = false
 
-		self.eurPriceLabel.text = "Euros: \(Double(self.price) * 0.89)"
+		self.eurPriceLabel.text = "Euros: \(Double(self.price) * ExchengeRates.usdToEuro)"
 		self.eurPriceLabel.font = .boldSystemFont(ofSize: self.textSize)
 		self.eurPriceLabel.translatesAutoresizingMaskIntoConstraints = false
 

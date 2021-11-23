@@ -16,9 +16,7 @@ final class CarDetailViewController: UIViewController
 	private let overlockingLabel = UILabel()
 	private let priceLabel = UILabel()
 	private let infoButton = UIButton(type: .infoLight)
-	private let textSize: CGFloat = TextSize.carDetailTextSize
 	private var screenSize = UIScreen.main.bounds
-	
 	
 	private var car: Car
 	
@@ -49,19 +47,15 @@ final class CarDetailViewController: UIViewController
 		self.carImageView.contentMode = .scaleAspectFit
 		
 		self.yearLabel.text = "Model year: \(self.car.yearOfIssue)"
-		self.yearLabel.font = .boldSystemFont(ofSize: self.textSize)
 		self.yearLabel.translatesAutoresizingMaskIntoConstraints = false
 		
 		self.powerLabel.text = "Power: \(self.car.power) HP"
-		self.powerLabel.font = .boldSystemFont(ofSize: self.textSize)
 		self.powerLabel.translatesAutoresizingMaskIntoConstraints = false
 		
 		self.overlockingLabel.text = "0 - 100: \(self.car.overlocking) s."
-		self.overlockingLabel.font = .boldSystemFont(ofSize: self.textSize)
 		self.overlockingLabel.translatesAutoresizingMaskIntoConstraints = false
 		
 		self.priceLabel.text = "Start price: \(self.car.price) $"
-		self.priceLabel.font = .boldSystemFont(ofSize: self.textSize)
 		self.priceLabel.translatesAutoresizingMaskIntoConstraints = false
 		
 		self.infoButton.addTarget(self, action: #selector(self.presentPriceDetailViewController), for: .allTouchEvents)
@@ -86,24 +80,28 @@ final class CarDetailViewController: UIViewController
 		}
 
 		self.view.addSubview(self.yearLabel)
+		self.yearLabel.font = .boldSystemFont(ofSize: TextSize.carDetailTextSize)
 		self.yearLabel.snp.makeConstraints { maker in
 			maker.top.equalTo(carImageView.snp.bottom).offset(20)
 			maker.leading.equalToSuperview().offset(20)
 		}
 
 		self.view.addSubview(self.powerLabel)
+		self.powerLabel.font = .boldSystemFont(ofSize: TextSize.carDetailTextSize)
 		self.powerLabel.snp.makeConstraints { maker in
 			maker.top.equalTo(yearLabel.snp.bottom).offset(20)
 			maker.leading.equalToSuperview().offset(20)
 		}
 
 		self.view.addSubview(self.overlockingLabel)
+		self.overlockingLabel.font = .boldSystemFont(ofSize: TextSize.carDetailTextSize)
 		self.overlockingLabel.snp.makeConstraints { maker in
 			maker.leading.equalToSuperview().offset(20)
 			maker.top.equalTo(powerLabel.snp.bottom).offset(20)
 		}
 
 		self.view.addSubview(self.priceLabel)
+		self.priceLabel.font = .boldSystemFont(ofSize: TextSize.carDetailTextSize)
 		self.priceLabel.snp.makeConstraints { maker in
 			maker.leading.equalToSuperview().offset(20)
 			maker.top.equalTo(overlockingLabel.snp.bottom).offset(20)
@@ -126,21 +124,21 @@ final class CarDetailViewController: UIViewController
 		}
 
 		self.view.addSubview(self.yearLabel)
-		self.yearLabel.font = .boldSystemFont(ofSize: self.textSize + 15)
+		self.yearLabel.font = .boldSystemFont(ofSize: TextSize.carDetailHorizontalTextSize)
 		self.yearLabel.snp.makeConstraints { maker in
 			maker.top.equalTo(self.carImageView.snp.bottom).offset(20)
 			maker.leading.equalToSuperview().offset(20)
 		}
 
 		self.view.addSubview(self.powerLabel)
-		self.powerLabel.font = .boldSystemFont(ofSize: self.textSize + 15)
+		self.powerLabel.font = .boldSystemFont(ofSize: TextSize.carDetailHorizontalTextSize)
 		self.powerLabel.snp.makeConstraints { maker in
 			maker.top.equalTo(self.yearLabel.snp.bottom).offset(20)
 			maker.leading.equalToSuperview().offset(20)
 		}
 
 		self.view.addSubview(self.overlockingLabel)
-		self.overlockingLabel.font = .boldSystemFont(ofSize: self.textSize + 15)
+		self.overlockingLabel.font = .boldSystemFont(ofSize: TextSize.carDetailHorizontalTextSize)
 		self.overlockingLabel.snp.makeConstraints { maker in
 			maker.centerY.equalTo(self.yearLabel.snp.centerY)
 			maker.trailing.equalToSuperview().offset(-30)
@@ -153,10 +151,24 @@ final class CarDetailViewController: UIViewController
 		}
 
 		self.view.addSubview(self.priceLabel)
-		self.priceLabel.font = .boldSystemFont(ofSize: self.textSize + 15)
+		self.priceLabel.font = .boldSystemFont(ofSize: TextSize.carDetailHorizontalTextSize)
 		self.priceLabel.snp.makeConstraints { maker in
 			maker.centerY.equalTo(self.powerLabel.snp.centerY)
 			maker.trailing.equalTo(self.infoButton.snp.leading).offset(-10)
 		}
+	}
+	
+	
+	override func viewLayoutMarginsDidChange() {
+		self.screenSize = UIScreen.main.bounds
+		
+		self.carImageView.snp.removeConstraints()
+		self.yearLabel.snp.removeConstraints()
+		self.powerLabel.snp.removeConstraints()
+		self.overlockingLabel.snp.removeConstraints()
+		self.priceLabel.snp.removeConstraints()
+		self.infoButton.snp.removeConstraints()
+		
+		self.configureView()
 	}
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B622006527484E1100DCC268 /* CarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B622006427484E1100DCC268 /* CarDetailViewController.swift */; };
+		B63FA6DC274C925E00FDB760 /* ExchengeRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63FA6DB274C925E00FDB760 /* ExchengeRates.swift */; };
 		B65543E72745EEC80006A51F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65543E62745EEC80006A51F /* AppDelegate.swift */; };
 		B65543E92745EEC80006A51F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65543E82745EEC80006A51F /* SceneDelegate.swift */; };
 		B65543EB2745EEC80006A51F /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65543EA2745EEC80006A51F /* MainScreenViewController.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		B622006427484E1100DCC268 /* CarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailViewController.swift; sourceTree = "<group>"; };
+		B63FA6DB274C925E00FDB760 /* ExchengeRates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchengeRates.swift; sourceTree = "<group>"; };
 		B65543E32745EEC80006A51F /* CollectionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B65543E62745EEC80006A51F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B65543E82745EEC80006A51F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				B65CF11C2748DD29007E5CD2 /* Car */,
 				B65CF11D2748F553007E5CD2 /* PriceDetailViewController.swift */,
 				B622006427484E1100DCC268 /* CarDetailViewController.swift */,
+				B63FA6DB274C925E00FDB760 /* ExchengeRates.swift */,
 				B674B71F274A984800556179 /* TextSize.swift */,
 				B65543EF2745EECB0006A51F /* Assets.xcassets */,
 				B65543F12745EECB0006A51F /* LaunchScreen.storyboard */,
@@ -173,6 +176,7 @@
 				B65544012746D02A0006A51F /* CarCollectionCell.swift in Sources */,
 				B65543E72745EEC80006A51F /* AppDelegate.swift in Sources */,
 				B65CF11E2748F553007E5CD2 /* PriceDetailViewController.swift in Sources */,
+				B63FA6DC274C925E00FDB760 /* ExchengeRates.swift in Sources */,
 				B65543FB2745F04F0006A51F /* Car.swift in Sources */,
 				B622006527484E1100DCC268 /* CarDetailViewController.swift in Sources */,
 				B65543E92745EEC80006A51F /* SceneDelegate.swift in Sources */,

@@ -22,25 +22,7 @@ final class CarCollectionCell: UICollectionViewCell
 	
 	var car: Car? {
 		didSet {
-			guard let car = car else { return }
-			self.imageView.image = car.image
-			self.imageView.contentMode = .scaleAspectFit
-			self.imageView.translatesAutoresizingMaskIntoConstraints = false
-
-			self.manufacturer.text = car.manufacturer
-			self.manufacturer.font = .boldSystemFont(ofSize: self.fontSize)
-			self.manufacturer.shadowColor = .lightText
-			self.manufacturer.translatesAutoresizingMaskIntoConstraints = false
-
-			self.model.text = car.model
-			self.model.font = .boldSystemFont(ofSize: self.fontSize)
-			self.model.shadowColor = .lightText
-			self.model.translatesAutoresizingMaskIntoConstraints = false
-
-			self.yearOfIssue.text = String(car.yearOfIssue)
-			self.yearOfIssue.font = .boldSystemFont(ofSize: self.fontSize)
-			self.yearOfIssue.shadowColor = .lightText
-			self.yearOfIssue.translatesAutoresizingMaskIntoConstraints = false
+			self.setContent()
 		}
 	}
 	
@@ -60,6 +42,28 @@ final class CarCollectionCell: UICollectionViewCell
 				self.alpha = self.isHighlighted ? 0.5 : 1.0
 			}
 		}
+	}
+	
+	private func setContent() {
+		guard let car = self.car else { return }
+		self.imageView.image = car.image
+		self.imageView.contentMode = .scaleAspectFit
+		self.imageView.translatesAutoresizingMaskIntoConstraints = false
+
+		self.manufacturer.text = car.manufacturer
+		self.manufacturer.font = .boldSystemFont(ofSize: self.fontSize)
+		self.manufacturer.shadowColor = .lightText
+		self.manufacturer.translatesAutoresizingMaskIntoConstraints = false
+
+		self.model.text = car.model
+		self.model.font = .boldSystemFont(ofSize: self.fontSize)
+		self.model.shadowColor = .lightText
+		self.model.translatesAutoresizingMaskIntoConstraints = false
+
+		self.yearOfIssue.text = String(car.yearOfIssue)
+		self.yearOfIssue.font = .boldSystemFont(ofSize: self.fontSize)
+		self.yearOfIssue.shadowColor = .lightText
+		self.yearOfIssue.translatesAutoresizingMaskIntoConstraints = false
 	}
 
 	private func configureView() {
