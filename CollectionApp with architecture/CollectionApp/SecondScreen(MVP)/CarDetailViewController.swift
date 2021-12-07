@@ -7,12 +7,17 @@
 
 import UIKit
 
+protocol ICarDetailViewController: AnyObject
+{
+	func presentPriceDetailViewController(price: Int)
+}
+
 final class CarDetailViewController: UIViewController
 {
-	private lazy var presenter = CarDetailPresenter()
+	private lazy var presenter: ICarDetailPresenter = CarDetailPresenter()
 	private lazy var ui: ICarDetailView = CarDetailView()
 		
-	init(car: CarModel) {
+	init(car: CarMVPModel) {
 		super.init(nibName: nil, bundle: nil)
 		self.presenter.set(car: car)
 		self.set(title:"\(car.manufacturer) \(car.model)")
@@ -31,7 +36,10 @@ final class CarDetailViewController: UIViewController
 	private func set(title: String) {
 		self.navigationItem.title = title
 	}
-	
+}
+
+extension CarDetailViewController : ICarDetailViewController
+{
 	func presentPriceDetailViewController(price: Int) {
 		let vc = PriceDetailViewController(price: price)
 		self.navigationController?.present(vc, animated: true, completion: nil)
