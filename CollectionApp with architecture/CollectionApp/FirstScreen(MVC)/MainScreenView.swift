@@ -10,9 +10,10 @@ import SnapKit
 
 final class MainScreenView: UIView
 {
-	var didTapHandler: ((Int)->Void)?
-	private var cars: [MainScreenCarModel]?
-	
+	var didTapCellHandler: ((Int)->Void)?
+	var needCarOnIndexHandler: ((Int) -> CarMVCModel?)?
+	var needCountHandler: (() -> Int?)?
+
 	private lazy var collectionView: UICollectionView = {
 		let flowLayout = CollectionViewFlowLayout()
 		let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
@@ -33,10 +34,6 @@ final class MainScreenView: UIView
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	func setCars(_ cars: [MainScreenCarModel]) {
-		self.cars = cars
-	}
-	
 	private func configure() {
 		self.addSubview(self.collectionView)
 		self.collectionView.snp.makeConstraints { maker in
@@ -49,18 +46,19 @@ extension MainScreenView: UICollectionViewDataSource
 {
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CarCollectionCell.identifier, for: indexPath) as! CarCollectionCell
-		cell.car = self.cars?[indexPath.row]
+		cell.car = self.needCarOnIndexHandler?(indexPath.row)
 		return cell
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return self.cars?.count ?? 0
+		guard let count = self.needCountHandler?() else { return 0 }
+		return count
 	}
 }
 
 extension MainScreenView: UICollectionViewDelegate
 {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		self.didTapHandler?(indexPath.row)
+		self.didTapCellHandler?(indexPath.row)
 	}
 }

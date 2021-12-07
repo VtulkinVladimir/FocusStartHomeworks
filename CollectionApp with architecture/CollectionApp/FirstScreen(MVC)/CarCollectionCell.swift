@@ -16,10 +16,8 @@ final class CarCollectionCell: UICollectionViewCell
 	private let manufacturer = UILabel()
 	private let model = UILabel()
 	private let yearOfIssue = UILabel()
-	private let fontSize = TextSize.carCollectionCellTextSize
-
 	
-	var car: MainScreenCarModel? {
+	var car: CarMVCModel? {
 		didSet {
 			self.setContent()
 		}
@@ -29,7 +27,6 @@ final class CarCollectionCell: UICollectionViewCell
 		super.init(frame: frame)
 		self.configureView()
 	}
-	
 	
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
@@ -50,17 +47,17 @@ final class CarCollectionCell: UICollectionViewCell
 		self.imageView.translatesAutoresizingMaskIntoConstraints = false
 
 		self.manufacturer.text = car.manufacturer
-		self.manufacturer.font = .boldSystemFont(ofSize: self.fontSize)
+		self.manufacturer.font = .boldSystemFont(ofSize: TextSize.carCollectionCellTextSize)
 		self.manufacturer.shadowColor = .lightText
 		self.manufacturer.translatesAutoresizingMaskIntoConstraints = false
 
 		self.model.text = car.model
-		self.model.font = .boldSystemFont(ofSize: self.fontSize)
+		self.model.font = .boldSystemFont(ofSize: TextSize.carCollectionCellTextSize)
 		self.model.shadowColor = .lightText
 		self.model.translatesAutoresizingMaskIntoConstraints = false
 
 		self.yearOfIssue.text = String(car.yearOfIssue)
-		self.yearOfIssue.font = .boldSystemFont(ofSize: self.fontSize)
+		self.yearOfIssue.font = .boldSystemFont(ofSize: TextSize.carCollectionCellTextSize)
 		self.yearOfIssue.shadowColor = .lightText
 		self.yearOfIssue.translatesAutoresizingMaskIntoConstraints = false
 	}

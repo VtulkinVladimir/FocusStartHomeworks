@@ -9,37 +9,40 @@ import UIKit
 
 final class MainScreenViewController: UIViewController
 {
-	private var cars = CarModel.data
+	private var cars = CarStorage()
 	
 	private lazy var ui: MainScreenView = {
 		let view = MainScreenView()
-		view.didTapHandler = {[weak self] index in
+		view.didTapCellHandler = {[weak self] index in
 			self?.goToSecondScreen(index: index)
+		}
+		view.needCarOnIndexHandler = {[weak self] index in
+			self?.returnCarOn(index: index)
+		}
+		
+		view.needCountHandler = {[weak self] in
+			return self?.cars.getCount()
 		}
 		return view
 	}()
 
 	override func loadView() {
-		let carsM = self.transformationCar(cars: self.cars)
-		self.ui.setCars(carsM)
 		self.view = self.ui
 		self.navigationItem.title = "Garage"
 		self.navigationController?.navigationBar.prefersLargeTitles = true
 		self.view.backgroundColor = .systemBackground
 	}
 	
-	private func transformationCar(cars:[CarModel]) -> [MainScreenCarModel] {
-		var viewCars = [MainScreenCarModel]()
-		cars.forEach { car in
-			let car = MainScreenCarModel(car: car)
-			viewCars.append(car)
-		}
-		return viewCars
+	private func goToSecondScreen(index: Int) {
+		let car = self.cars.getCarOn(index: index)
+		let mvpCar = CarMVPModel(car: car)
+		let vc = CarDetailViewController(car: mvpCar)
+		self.navigationController?.pushViewController(vc, animated: true)
 	}
 	
-	private func goToSecondScreen(index: Int) {
-		let car = self.cars[index]
-		let vc = CarDetailViewController(car: car)
-		self.navigationController?.pushViewController(vc, animated: true)
+	private func returnCarOn(index: Int) -> CarMVCModel {
+		let car = self.cars.getCarOn(index: index)
+		let carModel = CarMVCModel(car: car)
+		return carModel
 	}
 }

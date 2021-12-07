@@ -1,19 +1,20 @@
 //
-//  MainScreenCarModel.swift
+//  CarModel.swift
 //  CollectionAppArchitecture
 //
-//  Created by Владимир Втулкин on 29.11.2021.
+//  Created by Владимир Втулкин on 07.12.2021.
 //
+
 import UIKit
 
-final class MainScreenCarModel
+final class CarMVCModel
 {
 	let image: UIImage?
 	let manufacturer: String
 	let model: String
 	let yearOfIssue: Int
-	
-	init(car: CarModel) {
+
+	init(car: Car) {
 		self.image = car.image
 		self.manufacturer = car.manufacturer
 		self.model = car.model
