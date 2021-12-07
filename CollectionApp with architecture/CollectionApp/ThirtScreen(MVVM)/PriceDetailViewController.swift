@@ -10,6 +10,8 @@ import SnapKit
 
 final class PriceDetailViewController: UIViewController
 {
+	private var model = PriceViewModel()
+
 	private lazy var ui: PriceView = {
 		let view = PriceView()
 		view.closeButtonTapHandler = {[weak self] in
@@ -17,8 +19,6 @@ final class PriceDetailViewController: UIViewController
 		}
 		return view
 	}()
-	
-	private var model = PriceViewModel()
 
 	init(price: Int) {
 		super.init(nibName: nil, bundle: nil)

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-protocol IListerPrice
+protocol ISubscriberPrice
 {
 	func notify(price: Int)
 }
@@ -16,7 +16,6 @@ protocol IListerPrice
 final class PriceView: UIView
 {
 	var closeButtonTapHandler: (() -> Void)?
-	private let textSize: CGFloat = TextSize.priceDetailTextSize
 	private let dollarPricelabel = UILabel()
 	private let rubPriceLabel = UILabel()
 	private let eurPriceLabel = UILabel()
@@ -34,15 +33,15 @@ final class PriceView: UIView
 	private func setContent(price: Int) {
 
 		self.dollarPricelabel.text = "Dollars: \(Double(price))"
-		self.dollarPricelabel.font = .boldSystemFont(ofSize: self.textSize)
+		self.dollarPricelabel.font = .boldSystemFont(ofSize: TextSize.priceDetailTextSize)
 		self.dollarPricelabel.translatesAutoresizingMaskIntoConstraints = false
 
 		self.rubPriceLabel.text = "Rubles: \(Double(price) * ExchengeRates.usdToRub)"
-		self.rubPriceLabel.font = .boldSystemFont(ofSize: self.textSize)
+		self.rubPriceLabel.font = .boldSystemFont(ofSize: TextSize.priceDetailTextSize)
 		self.rubPriceLabel.translatesAutoresizingMaskIntoConstraints = false
 
 		self.eurPriceLabel.text = "Euros: \(Double(price) * ExchengeRates.usdToEuro)"
-		self.eurPriceLabel.font = .boldSystemFont(ofSize: self.textSize)
+		self.eurPriceLabel.font = .boldSystemFont(ofSize: TextSize.priceDetailTextSize)
 		self.eurPriceLabel.translatesAutoresizingMaskIntoConstraints = false
 
 		self.closeButton.addTarget(self, action: #selector(self.tapCloseButton), for: .touchUpInside)
@@ -82,7 +81,7 @@ final class PriceView: UIView
 	}
 }
 
-extension PriceView: IListerPrice
+extension PriceView: ISubscriberPrice
 {
 	func notify(price: Int) {
 		self.setContent(price: price)

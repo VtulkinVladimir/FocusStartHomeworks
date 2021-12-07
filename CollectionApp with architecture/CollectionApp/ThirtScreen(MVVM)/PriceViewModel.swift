@@ -4,35 +4,36 @@
 //
 //  Created by Владимир Втулкин on 01.12.2021.
 //
-final class ListnersManager
+final class Notificator
 {
-	private var listners = [IListerPrice]()
+	private var subscribers = [ISubscriberPrice]()
 	
-	func add(listner: IListerPrice) {
-		self.listners.append(listner)
+	func add(subscriber: ISubscriberPrice) {
+		self.subscribers.append(subscriber)
 	}
 	
 	func notify(price: Int?) {
 		guard let price = price else { return }
-		self.listners.forEach { $0.notify(price: price) }
+		self.subscribers.forEach { $0.notify(price: price) }
 	}
 }
 
 final class PriceViewModel
 {
+	private var notificator = Notificator()
+	
 	private var price: Int? {
 		didSet {
-			self.listnerManager.notify(price: self.price)
+			self.notificator.notify(price: self.price)
 		}
 	}
-	private var listnerManager = ListnersManager()
-	
+
 	func set(price: Int) {
 		self.price = price
 	}
 	
-	func load(view: IListerPrice) {
-		self.listnerManager.add(listner: view)
-		self.listnerManager.notify(price: self.price)
+	func load(view: ISubscriberPrice) {
+		self.notificator.add(subscriber: view)
+		self.notificator.notify(price: self.price)
 	}
 }
