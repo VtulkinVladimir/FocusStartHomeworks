@@ -6,10 +6,9 @@
 //
 
 import UIKit
+
 protocol IURLViewController
-{
-	
-}
+{}
 
 final class URLViewController: UIViewController {
 	
@@ -21,7 +20,7 @@ final class URLViewController: UIViewController {
 		self.presenter.load(view: self.ui)
 	}
 
-	init(network: NetworkServices) {
+	init(network: INetworkServices) {
 		super.init(nibName: nil, bundle: nil)
 		self.presenter.set(network: network)
 	}
@@ -33,6 +32,4 @@ final class URLViewController: UIViewController {
 }
 
 extension URLViewController: IURLViewController
-{
-	
-}
+{}

@@ -10,14 +10,13 @@ import Foundation
 protocol IURLPresenter
 {
 	func load(view: IURLView)
-	func set(network: NetworkServices)
+	func set(network: INetworkServices)
 }
 
 final class URLPresenter
 {
-	private var networkServices: NetworkServices?
+	private var networkServices: INetworkServices?
 	private weak var view: IURLView?
-	
 	private var dataImage = [Data?]()
 	
 	private func configureCell(index: Int) -> ImageTableViewCell? {
@@ -29,19 +28,7 @@ final class URLPresenter
 	private func downloadImage(url: String) {
 		guard let url = URL(string: url) else { return }
 		print("download started with url: \(url)")
-		self.networkServices?.downloadImage(with: url) { result in
-			switch result {
-			case .failure(let error):
-				print("error: \(error)")
-			case .success(let data) :
-				self.dataImage.append(data)
-				DispatchQueue.main.async {
-					self.view?.reloadTableView()
-				}
-			}
-		}
-		
-
+		self.networkServices?.downloadImage(with: url)
 	}
 	
 	private func pauseDownload() {
@@ -55,8 +42,21 @@ final class URLPresenter
 
 extension URLPresenter: IURLPresenter
 {
-	func set(network: NetworkServices) {
+	func set(network: INetworkServices) {
 		self.networkServices = network
+		
+		self.networkServices?.onProgress = {[weak self] progress in
+			DispatchQueue.main.async {
+				self?.view?.updateProgress(progress: progress)
+			}
+		}
+		
+		self.networkServices?.downloadingData = {[weak self] data in
+			self?.dataImage.append(data)
+			DispatchQueue.main.async {
+				self?.view?.reloadTableView()
+			}
+		}
 	}
 	
 	func load(view: IURLView) {
@@ -82,9 +82,6 @@ extension URLPresenter: IURLPresenter
 			self?.continueDownload()
 		}
 		
-		
 		self.view?.configure()
 	}
-	
-	
 }
