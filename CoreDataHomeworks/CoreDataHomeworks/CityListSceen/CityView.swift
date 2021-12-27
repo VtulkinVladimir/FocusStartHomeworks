@@ -12,7 +12,7 @@ protocol ICityView: AnyObject
 {
 	func configure()
 	func reloadData()
-	var configureCellHandler: ((Int) -> UITableViewCell?)? { get set }
+	var configureCellHandler: ((Int) -> CityTableViewCell?)? { get set }
 	var numberOfRowHandler: (() -> Int?)? { get set }
 	var didTapCellHandler: ((Int) -> Void)? { get set }
 	var didDeleteCellHandler: ((Int) -> Void)? { get set }
@@ -22,7 +22,7 @@ protocol ICityView: AnyObject
 
 final class CityView: UIView
 {
-	var configureCellHandler: ((Int) -> UITableViewCell?)?
+	var configureCellHandler: ((Int) -> CityTableViewCell?)?
 	var numberOfRowHandler: (() -> Int?)?
 	var didTapCellHandler: ((Int) -> Void)?
 	var didTapAddHandler: (() -> Void)?
@@ -30,7 +30,7 @@ final class CityView: UIView
 	
 	private lazy var tableView: UITableView = {
 		let tableView = UITableView()
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "City")
+		tableView.register(CityTableViewCell.self, forCellReuseIdentifier: "City")
 		tableView.delegate = self
 		tableView.dataSource = self
 		return tableView

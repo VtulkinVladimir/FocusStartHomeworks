@@ -44,6 +44,6 @@ extension DetailCityPresenter: IDetailCityPresenter
 	func set(_ city: CityModel) {
 		self.city = city
 		self.view?.set(city: city)
-		self.view?.set(weatherImage: city.weather?.consolidatedWeather.first?.weatherImage)
+//		self.view?.set(weatherImage: city.lastWeatherImage)
 	}
 }

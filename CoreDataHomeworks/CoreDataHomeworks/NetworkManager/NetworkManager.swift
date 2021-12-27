@@ -8,7 +8,7 @@
 import Foundation
 protocol INetworkManager
 {
-	func getCityInfo(from city: String)
+	func getCityInfo(from city: String, completion: @escaping ((Result<DTOCity,Error>)-> Void))
 	func getWeatherIn(cityId: Int, completion: @escaping ((Result<DTOWeather, Error>) -> Void))
 	func getWeatherImage(weatherAbr: String, completion: @escaping ((Result<Data, Error>) -> Void))
 }
@@ -18,13 +18,14 @@ final class NetworkManager
 	private let session = URLSession(configuration: .default)
 	private let weatherUrl = "https://www.metaweather.com/api/location/"
 	private let weatherImageUrl = "https://www.metaweather.com/static/img/weather/png/64/"
+	private let searchCityUrl = "https://www.metaweather.com/api/location/search/?query="
 }
 
 extension NetworkManager: INetworkManager
 {
-	func getCityInfo(from city: String) {
-		let searchUrl = "https://www.metaweather.com/api/location/search/?query="
-		let fullSearchUrl = searchUrl + city
+	func getCityInfo(from city: String, completion: @escaping ((Result<DTOCity,Error>)-> Void)) {
+//		let searchUrl = "https://www.metaweather.com/api/location/search/?query="
+		let fullSearchUrl = self.searchCityUrl + city
 		guard let url = URL(string: fullSearchUrl) else { return }
 		
 		let request = URLRequest(url: url)
@@ -34,9 +35,11 @@ extension NetworkManager: INetworkManager
 			
 			do {
 				let result = try JSONDecoder().decode(DTOCity.self, from: data)
-				print(result)
+				completion(.success(result))
+//				print("network \(result)")
 			}
 			catch {
+				
 				print(error)
 			}
 		}.resume()
@@ -68,20 +71,6 @@ extension NetworkManager: INetworkManager
 		guard let url = URL(string: strUrl) else { return }
 		let request = URLRequest(url: url)
 		
-//		self.session.downloadTask(with: url) { url, response, error in
-//			guard let url = url else { return}
-//			
-//			do {
-//				let data = try Data(contentsOf: url)
-//				completion(.success(data))
-//				print(data)
-//			}
-//			catch {
-//				completion(.failure(error))
-//				print(error)
-//			}
-//		}
-		
 		self.session.downloadTask(with: request) { url, response, error in
 			guard let url = url else {
 				print("нихуя идем домой")
@@ -89,7 +78,7 @@ extension NetworkManager: INetworkManager
 			
 			do {
 				let data = try Data(contentsOf: url)
-				print(data)
+//				print(data)
 				completion(.success(data))
 				
 			}

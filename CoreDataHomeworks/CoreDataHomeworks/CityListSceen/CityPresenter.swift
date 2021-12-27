@@ -45,10 +45,13 @@ final class CityPresenter
 		
 	}
 	
-	private func configureCell(at index: Int) -> UITableViewCell? {
-		let cell = UITableViewCell(style: .default, reuseIdentifier: "City")
+	private func configureCell(at index: Int) -> CityTableViewCell? {
+//		let cell = UITableViewCell(style: .default, reuseIdentifier: "City")
+		let cell = CityTableViewCell(style: .default, reuseIdentifier: "City")
 		let city = self.citys[index]
-		cell.textLabel?.text = city.name + " " + String(city.lastTemp ?? 0)
+//		cell.textLabel?.text = city.name + " " + String(city.lastTemp ?? 0)
+		cell.configure()
+		cell.set(name: city.name, lastTemp: city.lastTemp, weatherImage: city.lastWeatherImage)
 		return cell
 	}
 	
@@ -90,13 +93,14 @@ final class CityPresenter
 			print("сосни")
 			return }
 			self.networkManager.getWeatherImage(weatherAbr: currentWeather.weatherAbr) { result in
-				print(result)
+//				print(result)
 				switch result {
 				case .failure(let error): print(error)
 				case .success(let data):
-					print(data)
-					currentWeather.weatherImage = data
-					print("current \(city.weather?.consolidatedWeather.first?.weatherImage)")
+//					print(data)
+					city.lastWeatherImage = data
+//					currentWeather.weatherImage = data
+//					print("current \(city.weather?.consolidatedWeather.first?.weatherImage)")
 //					DispatchQueue.main.async {
 //	//					self.view?.reloadData()
 //						self.storeManager.updateCity(in: city)
@@ -106,7 +110,7 @@ final class CityPresenter
 						self.view?.reloadData()
 						self.storeManager.updateCity(in: city)
 						self.router.next(with: city)
-						print("next \(city.weather?.consolidatedWeather.first?.weatherImage)")
+//						print("next \(city.weather?.consolidatedWeather.first?.weatherImage)")
 					}
 				}
 			}

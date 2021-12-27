@@ -81,7 +81,7 @@ extension StoreManager: IStoreManager
 		let newCity = City(context: self.viewContext)
 		newCity.name = city.name
 		newCity.woeId = Int64(city.woeId)
-		newCity.id = UUID()
+		newCity.id = city.id
 		self.saveContext()
 	}
 	
@@ -91,11 +91,12 @@ extension StoreManager: IStoreManager
 	
 	func updateCity(in city: CityModel) {
 		guard let newTemp = city.lastTemp else { return }
-		guard let weather = city.weather else { return }
+		guard let weatherImage = city.lastWeatherImage else { return }
 		guard let city = self.findCity(with: city.id) else { return }
 		
 		city.lastTemp = NSNumber(value: newTemp)
-		print("тут запомнилась погода")
+		city.weatherImage = weatherImage
+//		print("тут запомнилась погода \(weatherImage)")
 		self.saveContext()
 	}
 	

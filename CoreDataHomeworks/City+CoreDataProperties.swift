@@ -18,5 +18,6 @@ extension City
 	@NSManaged public var woeId: Int64
 	@NSManaged public var id: UUID
 	@NSManaged public var lastTemp: NSNumber?
+	@NSManaged public var weatherImage: Data?
 
 }

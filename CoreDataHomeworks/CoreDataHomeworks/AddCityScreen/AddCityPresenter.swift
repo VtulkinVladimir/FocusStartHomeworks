@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol IAddCityPresenter
 {
@@ -20,6 +21,8 @@ final class AddCityPresenter
 	
 	private let networkManager: INetworkManager = NetworkManager()
 	
+	
+	private var findCitys: [FindCityModel]?
 	struct Dependencies
 	{
 		let view: IAddCityView
@@ -32,6 +35,30 @@ final class AddCityPresenter
 		self.storeManager = dependencies.storeManager
 		self.view = dependencies.view
 	}
+	
+	private func configureCell(at index: Int) -> UITableViewCell? {
+		let cell = UITableViewCell(style: .default, reuseIdentifier: "City")
+		if let city = self.findCitys?[index] {
+			cell.textLabel?.text = city.name
+			return cell
+		}
+		return nil
+	}
+	
+	private func findCity(request: String) {
+		self.networkManager.getCityInfo(from: request) { result in
+			switch result {
+			case .failure(let error): print(error)
+			case .success(let citys):
+				let findCitys = citys.map { FindCityModel(dto: $0)}
+				print("cast\(findCitys)")
+				self.findCitys = findCitys
+				DispatchQueue.main.async {
+					self.view?.reloadData()
+				}
+			}
+		}
+	}
 }
 
 extension AddCityPresenter: IAddCityPresenter
@@ -40,8 +67,25 @@ extension AddCityPresenter: IAddCityPresenter
 		self.view?.searchButtonTapHandler = {[weak self] str in
 //			self?.storeManager.addCompany(company: company)
 //			self?.router.close()
-			self?.networkManager.getCityInfo(from: str)
+			self?.findCity(request: str)
 		}
+		
+		self.view?.configureCellHandler = {[weak self] index in
+			self?.configureCell(at: index)
+		}
+		
+		self.view?.numberOfRowHandler = {[weak self] in
+			self?.findCitys?.count
+		}
+		
+		self.view?.didTapCellHandler = {[weak self] index in
+			guard let citys = self?.findCitys else { return }
+			let city = citys[index]
+			let cityModel = CityModel(findCity: city)
+			self?.storeManager.addCity(city: cityModel)
+			self?.router.close()
+		}
+		
 		self.view?.configure()
 	}
 }

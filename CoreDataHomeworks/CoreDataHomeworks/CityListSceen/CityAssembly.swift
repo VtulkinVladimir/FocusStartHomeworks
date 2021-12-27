@@ -19,9 +19,11 @@ final class CityAssembly
 		///Temp
 //		let cityLondon = CityModel(name: "London", woeId: 44418)
 //		let citySanFrancisco = CityModel(name: "San Francisco", woeId: 2487956)
-//
+//		let cityMoscow = CityModel(name: "Moscow", woeId: 2122265)
+
 //		storeManager.addCity(city: cityLondon)
 //		storeManager.addCity(city: citySanFrancisco)
+//		storeManager.addCity(city: cityMoscow)
 
 		///Temp
 		
