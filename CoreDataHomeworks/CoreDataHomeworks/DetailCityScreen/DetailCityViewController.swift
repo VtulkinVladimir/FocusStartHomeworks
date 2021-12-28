@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol IDetailCityVC
+protocol IDetailCityVC: UIViewController
 {
 	func set(city: CityModel)
 }

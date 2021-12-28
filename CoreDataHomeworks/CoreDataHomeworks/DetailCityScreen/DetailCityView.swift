@@ -124,11 +124,20 @@ extension DetailCityView: IDetailCityView
 		}
 	}
 	
-	private func cuteString(str: String?) -> String? {
+	private func formatString(str: String?) -> String? {
 		guard let string = str else { return nil}
-		let cutString = String(string.dropFirst(11))
-		let resultString = String(cutString.dropLast(13))
-		return resultString
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        let printerDate = DateFormatter()
+        printerDate.dateFormat = "HH:mm:ss"
+
+        guard let date = dateFormatter.date(from: string) else { return nil}
+        print(printerDate.string(from: date))
+        return (printerDate.string(from: date))
+       
+//        return nil
 	}
 	
 	func set(city: CityModel) {
@@ -138,12 +147,14 @@ extension DetailCityView: IDetailCityView
 		
 		guard let temp = city.lastTemp else { return }
 		self.tempLabel.text = String(temp)
-		
-		guard let sunRise = self.cuteString(str: city.weather?.sunRise)  else { return }
+        
+//        print(city.weather?.sunRise)
+//        self.cuteString(str: city.weather?.sunRise)
+		guard let sunRise = self.formatString(str: city.weather?.sunRise)  else { return }
 //		let sunRise = self.cuteString(str: string)
 		self.sunRise.text = "Sunrise: \(sunRise)"
-		
-		guard let sunSet = self.cuteString(str: city.weather?.sunSet)  else { return }
+
+		guard let sunSet = self.formatString(str: city.weather?.sunSet)  else { return }
 		self.sunSet.text = "Sunset: \(sunSet)"
 		
 		self.wind.text = "Wind: " + String(todayWeather.windSpeed) + " mph "
@@ -158,12 +169,5 @@ extension DetailCityView: IDetailCityView
 		self.minTemp.text = "min: \(todayWeather.minTemp)"
 		self.maxTemp.text = "max: \(todayWeather.maxTemp)"
 		
-		todayWeather.airPressure
 	}
-	
-//	func set(weatherImage: Data?) {
-//		guard let data = weatherImage else { return }
-//		guard let image = UIImage(data: data) else { return }
-//		self.weatherImage.image = image
-//	}
 }

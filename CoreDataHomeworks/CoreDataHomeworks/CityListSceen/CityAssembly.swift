@@ -11,9 +11,10 @@ final class CityAssembly
 {
 	static func build() -> UIViewController {
 		let view: ICityView = CityView()
-		let router: ICityRouter = CityRouter()
+        let storeManager: IStoreManager = StoreManager()
+
+		let router: ICityRouter = CityRouter(storemanager: storeManager)
 		
-		let storeManager: IStoreManager = StoreManager()
 		let networkManager: INetworkManager = NetworkManager()
 		
 		///Temp
@@ -35,11 +36,11 @@ final class CityAssembly
 		
 		router.setCurrentViewController(viewController)
 		
-		let nextVC = DetailCityAssembly.build(storeManager: storeManager)
-		router.setNextViewController(nextVC)
+//		let nextVC = DetailCityAssembly.build(storeManager: storeManager)
+//		router.setNextViewController(nextVC)
 		
-		let addCompanyVC = AddCityAssembly.build(storeManager: storeManager)
-		router.setAddCompanyViewController(addCompanyVC)
+//		let addCompanyVC = AddCityAssembly.build(storeManager: storeManager)
+//		router.setAddCompanyViewController(addCompanyVC)
 		
 		return viewController
 	}

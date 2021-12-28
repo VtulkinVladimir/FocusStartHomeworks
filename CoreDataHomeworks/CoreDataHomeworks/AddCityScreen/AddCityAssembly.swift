@@ -18,9 +18,8 @@ final class AddCityAssembly
 		
 		let viewController: IAddCityViewController = AddCityViewController(dependencies: .init(view: view, presenter: presenter))
 		
-		if let vc = viewController as? UIViewController {
-			router.setCurrencyViewController(vc)
-		}
+        router.setCurrencyViewController(viewController)
+		
 		return viewController
 	}
 }

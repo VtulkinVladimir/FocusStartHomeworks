@@ -10,12 +10,10 @@ import CoreData
 
 protocol IStoreManager {
 	func addCity(city: CityModel)
-//	func removeCompany()
 	func retriveCity() -> [CityModel]?
 	var notify: (() -> Void)? { get set }
 	func updateCity(in city: CityModel)
 	func removeCity(_ city: CityModel)
-//	func save()
 }
 
 

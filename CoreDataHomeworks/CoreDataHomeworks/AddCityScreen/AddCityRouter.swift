@@ -11,7 +11,6 @@ import UIKit
 protocol IAddCityRouter
 {
 	func setCurrencyViewController(_ vc: UIViewController)
-	func setTargetViewController(_ vc: UIViewController)
 	func close()
 }
 
@@ -27,10 +26,6 @@ extension AddCityRouter: IAddCityRouter
 {
 	func setCurrencyViewController(_ vc: UIViewController) {
 		self.currencyViewController = vc
-	}
-	
-	func setTargetViewController(_ vc: UIViewController) {
-		self.targetViewController = vc
 	}
 	
 	func close() {

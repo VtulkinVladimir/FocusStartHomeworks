@@ -11,8 +11,8 @@ import UIKit
 protocol ICityRouter
 {
 	func setCurrentViewController(_ vc: UIViewController)
-	func setNextViewController(_ vc: IDetailCityVC)
-	func setAddCompanyViewController(_ vc: IAddCityViewController)
+//	func setNextViewController(_ vc: IDetailCityVC)
+//	func setAddCompanyViewController(_ vc: IAddCityViewController)
 	func next(with: CityModel)
 	func nextToAddCompany()
 }
@@ -20,8 +20,13 @@ protocol ICityRouter
 final class CityRouter
 {
 	private var currentViewvController: UIViewController?
-	private var nextViewController: IDetailCityVC?
-	private var addCompanyViewControler: IAddCityViewController?
+//	private weak var nextViewController: IDetailCityVC?
+//	private var addCompanyViewControler: IAddCityViewController?
+    private let storemanager: IStoreManager
+    
+    init(storemanager: IStoreManager) {
+        self.storemanager = storemanager
+    }
 }
 
 extension CityRouter: ICityRouter
@@ -30,24 +35,27 @@ extension CityRouter: ICityRouter
 		self.currentViewvController = vc
 	}
 	
-	func setNextViewController(_ vc: IDetailCityVC) {
-		self.nextViewController = vc
-	}
+//	func setNextViewController(_ vc: IDetailCityVC) {
+//		self.nextViewController = vc
+//	}
 	
-	func setAddCompanyViewController(_ vc: IAddCityViewController) {
-		self.addCompanyViewControler = vc
-	}
+//	func setAddCompanyViewController(_ vc: IAddCityViewController) {
+//		self.addCompanyViewControler = vc
+//	}
 	
 	func next(with city: CityModel) {
-		self.nextViewController?.set(city: city)
-		guard let nextVC = self.nextViewController as? UIViewController else { return }
-
-		self.currentViewvController?.navigationController?.pushViewController(nextVC, animated: true)
+        let nextViewController: IDetailCityVC = DetailCityAssembly.build(storeManager: self.storemanager)
+		nextViewController.set(city: city)
+//		guard let nextVC = self.nextViewController as? UIViewController else { return }
+        self.currentViewvController?.navigationController?.pushViewController(nextViewController, animated: true)
+//		self.currentViewvController?.navigationController?.pushViewController(nextVC, animated: true)
 	}
 	
 	func nextToAddCompany() {
-		guard let addVC = self.addCompanyViewControler as? UIViewController else { return }
-		
-		self.currentViewvController?.navigationController?.pushViewController(addVC, animated: true)
+        let addCompanyVC = AddCityAssembly.build(storeManager: self.storemanager)
+        self.currentViewvController?.navigationController?.pushViewController(addCompanyVC, animated: true)
+//		guard let addVC = self.addCompanyViewControler as? UIViewController else { return }
+//		
+//		self.currentViewvController?.navigationController?.pushViewController(addVC, animated: true)
 	}
 }

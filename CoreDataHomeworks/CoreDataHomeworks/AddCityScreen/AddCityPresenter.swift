@@ -23,6 +23,7 @@ final class AddCityPresenter
 	
 	
 	private var findCitys: [FindCityModel]?
+    
 	struct Dependencies
 	{
 		let view: IAddCityView
@@ -65,8 +66,6 @@ extension AddCityPresenter: IAddCityPresenter
 {
 	func loadView() {
 		self.view?.searchButtonTapHandler = {[weak self] str in
-//			self?.storeManager.addCompany(company: company)
-//			self?.router.close()
 			self?.findCity(request: str)
 		}
 		

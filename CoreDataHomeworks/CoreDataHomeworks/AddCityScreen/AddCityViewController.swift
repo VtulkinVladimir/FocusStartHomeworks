@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol IAddCityViewController
+protocol IAddCityViewController: UIViewController
 {
 	
 }

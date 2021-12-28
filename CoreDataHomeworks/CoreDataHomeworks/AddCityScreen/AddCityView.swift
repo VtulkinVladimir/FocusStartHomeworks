@@ -37,9 +37,8 @@ final class AddCityView: UIView
 		return tableView
 	}()
 	
-	@objc private func addButtonTap() {
+	@objc private func searchButtonTap() {
 		guard let text = self.nameTextField.text, text.isEmpty == false else { return }
-//		let company = CompanyModel(name: text)
 		self.searchButtonTapHandler?(text)
 	}
 	
@@ -55,19 +54,19 @@ extension AddCityView: IAddCityView
 		self.backgroundColor = .white
 		
 		self.addSubview(self.nameTextField)
-		self.nameTextField.placeholder = "Пиши город сюдой"
+		self.nameTextField.placeholder = "Я ищу город..."
 		self.nameTextField.borderStyle = .roundedRect
 		self.nameTextField.snp.makeConstraints { maker in
 			maker.centerX.equalToSuperview()
 			maker.top.equalToSuperview().offset(100)
+            maker.width.equalTo(200)
 		}
 		
 		self.addSubview(self.searchButton)
-		self.searchButton.backgroundColor = .systemBlue
 		self.searchButton.setTitle("Search", for: .normal)
-		self.searchButton.addTarget(self, action: #selector(self.addButtonTap), for: .touchUpInside)
+		self.searchButton.addTarget(self, action: #selector(self.searchButtonTap), for: .touchUpInside)
 		self.searchButton.snp.makeConstraints { maker in
-			maker.top.equalTo(self.nameTextField.snp.bottom).offset(30)
+			maker.top.equalTo(self.nameTextField.snp.bottom).offset(10)
 			maker.centerX.equalToSuperview()
 		}
 		
