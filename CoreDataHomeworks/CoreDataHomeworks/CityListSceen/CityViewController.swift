@@ -20,7 +20,10 @@ class CityViewController: UIViewController {
 	override func loadView() {
 		self.view = self.ui as? UIView
 		self.presenter.loadView()
+        self.navigationItem.title = "Weather"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
 		self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.didTapAdd))
+        self.navigationItem.rightBarButtonItem?.tintColor = .black
 	}
 	struct Dependencies
 	{

@@ -37,6 +37,7 @@ final class AddCityViewController: UIViewController
 	override func loadView() {
 		self.view = self.ui as? UIView
 		self.presenter.loadView()
+        self.navigationItem.title = "Find new city"
 	}
 }
 

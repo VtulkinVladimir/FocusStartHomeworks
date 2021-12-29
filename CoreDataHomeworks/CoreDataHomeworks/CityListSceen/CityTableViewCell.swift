@@ -17,7 +17,9 @@ final class CityTableViewCell: UITableViewCell
 	
 	
 	func configure() {
+        self.backgroundColor = .systemBlue
 		self.addSubview(self.nameLabel)
+        self.nameLabel.textColor = .white
 		self.nameLabel.snp.makeConstraints { maker in
 			maker.leading.equalToSuperview().offset(16)
 			maker.centerY.equalToSuperview()
@@ -32,8 +34,9 @@ final class CityTableViewCell: UITableViewCell
 		}
 		
 		self.addSubview(self.lastTempLabel)
+        self.lastTempLabel.textColor = .white
 		self.lastTempLabel.snp.makeConstraints { maker in
-			maker.trailing.equalTo(self.weatherImageView.snp.leading).offset(10)
+			maker.trailing.equalTo(self.weatherImageView.snp.leading).offset(-20)
 			maker.centerY.equalToSuperview()
 		}
 	}
@@ -42,7 +45,7 @@ final class CityTableViewCell: UITableViewCell
 		self.nameLabel.text = name
 		
 		guard let lastTemp = lastTemp else { return }
-		let str = String(lastTemp)
+		let str = "\(lastTemp) °C"
 		self.lastTempLabel.text = str
 		
 		guard let weatherData = weatherImage, let image = UIImage(data: weatherData) else { return }

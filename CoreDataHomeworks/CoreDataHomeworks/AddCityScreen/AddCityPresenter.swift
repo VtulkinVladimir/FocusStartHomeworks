@@ -39,8 +39,10 @@ final class AddCityPresenter
 	
 	private func configureCell(at index: Int) -> UITableViewCell? {
 		let cell = UITableViewCell(style: .default, reuseIdentifier: "City")
+        cell.backgroundColor = .systemBlue
 		if let city = self.findCitys?[index] {
 			cell.textLabel?.text = city.name
+            cell.textLabel?.textColor = .white
 			return cell
 		}
 		return nil
@@ -52,7 +54,6 @@ final class AddCityPresenter
 			case .failure(let error): print(error)
 			case .success(let citys):
 				let findCitys = citys.map { FindCityModel(dto: $0)}
-				print("cast\(findCitys)")
 				self.findCitys = findCitys
 				DispatchQueue.main.async {
 					self.view?.reloadData()

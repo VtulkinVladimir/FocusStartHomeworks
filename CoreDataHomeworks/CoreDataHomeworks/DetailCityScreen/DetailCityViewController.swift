@@ -38,12 +38,33 @@ final class DetailCityViewController: UIViewController
 	override func loadView() {
 		self.view = self.ui as? UIView
 		self.presenter.loadView()
+        self.navigationItem.largeTitleDisplayMode = .never
 	}
+    
+    private func setTitle(title: String) {
+        self.navigationItem.title = title
+    }
+    
+    
+    private func formatString(str: String?) -> String? {
+        guard let string = str else { return nil}
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        let printerDate = DateFormatter()
+        printerDate.dateFormat = "EEEE, MMM d"
+
+        guard let date = dateFormatter.date(from: string) else { return nil}
+        return (printerDate.string(from: date))
+    }
 }
 
 extension DetailCityViewController: IDetailCityVC
 {
 	func set(city: CityModel) {
 		self.presenter.set(city)
+        guard let title = self.formatString(str: city.weather?.consolidatedWeather.first?.applicableDate)  else { return }
+        self.setTitle(title: title)
 	}
 }

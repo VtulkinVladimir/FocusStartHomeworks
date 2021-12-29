@@ -24,7 +24,6 @@ final class NetworkManager
 extension NetworkManager: INetworkManager
 {
 	func getCityInfo(from city: String, completion: @escaping ((Result<DTOCity,Error>)-> Void)) {
-//		let searchUrl = "https://www.metaweather.com/api/location/search/?query="
 		let fullSearchUrl = self.searchCityUrl + city
 		guard let url = URL(string: fullSearchUrl) else { return }
 		
@@ -36,7 +35,6 @@ extension NetworkManager: INetworkManager
 			do {
 				let result = try JSONDecoder().decode(DTOCity.self, from: data)
 				completion(.success(result))
-//				print("network \(result)")
 			}
 			catch {
 				
@@ -73,17 +71,14 @@ extension NetworkManager: INetworkManager
 		
 		self.session.downloadTask(with: request) { url, response, error in
 			guard let url = url else {
-				print("нихуя идем домой")
 				return }
 			
 			do {
 				let data = try Data(contentsOf: url)
-//				print(data)
 				completion(.success(data))
 				
 			}
 			catch {
-				print(error)
 				completion(.failure(error))
 				
 			}

@@ -34,6 +34,7 @@ final class AddCityView: UIView
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "City")
 		tableView.delegate = self
 		tableView.dataSource = self
+        tableView.backgroundColor = .systemBlue
 		return tableView
 	}()
 	
@@ -51,19 +52,20 @@ extension AddCityView: IAddCityView
 	}
 	
 	func configure() {
-		self.backgroundColor = .white
+		self.backgroundColor = .systemBlue
 		
 		self.addSubview(self.nameTextField)
-		self.nameTextField.placeholder = "Я ищу город..."
+		self.nameTextField.placeholder = "City name..."
 		self.nameTextField.borderStyle = .roundedRect
 		self.nameTextField.snp.makeConstraints { maker in
 			maker.centerX.equalToSuperview()
-			maker.top.equalToSuperview().offset(100)
+			maker.top.equalToSuperview().offset(150)
             maker.width.equalTo(200)
 		}
 		
 		self.addSubview(self.searchButton)
 		self.searchButton.setTitle("Search", for: .normal)
+        self.searchButton.setTitleColor(.white, for: .normal)
 		self.searchButton.addTarget(self, action: #selector(self.searchButtonTap), for: .touchUpInside)
 		self.searchButton.snp.makeConstraints { maker in
 			maker.top.equalTo(self.nameTextField.snp.bottom).offset(10)

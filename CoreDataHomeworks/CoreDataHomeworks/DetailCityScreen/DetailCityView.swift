@@ -43,7 +43,7 @@ extension DetailCityView: IDetailCityView
 		self.nameLabel.textColor = self.textColor
 		self.nameLabel.snp.makeConstraints { maker in
 			maker.centerX.equalToSuperview()
-			maker.top.equalToSuperview().offset(100)
+			maker.top.equalToSuperview().offset(150)
 		}
 		
 		self.addSubview(self.weatherImage)
@@ -112,16 +112,6 @@ extension DetailCityView: IDetailCityView
 			maker.top.equalTo(self.sunSet.snp.bottom).offset(20)
 			maker.leading.equalTo(self.wind.snp.trailing).offset(10)
 		}
-		
-	
-		
-		self.addSubview(self.date)
-		self.date.font = .systemFont(ofSize: 25)
-		self.date.textColor = self.textColor
-		self.date.snp.makeConstraints { maker in
-			maker.centerX.equalToSuperview()
-			maker.bottom.equalToSuperview().inset(50)
-		}
 	}
 	
 	private func formatString(str: String?) -> String? {
@@ -134,11 +124,8 @@ extension DetailCityView: IDetailCityView
         printerDate.dateFormat = "HH:mm:ss"
 
         guard let date = dateFormatter.date(from: string) else { return nil}
-        print(printerDate.string(from: date))
         return (printerDate.string(from: date))
-       
-//        return nil
-	}
+    }
 	
 	func set(city: CityModel) {
 		guard let todayWeather = city.weather?.consolidatedWeather.first else { return }
@@ -146,12 +133,9 @@ extension DetailCityView: IDetailCityView
 		self.nameLabel.text = city.name
 		
 		guard let temp = city.lastTemp else { return }
-		self.tempLabel.text = String(temp)
-        
-//        print(city.weather?.sunRise)
-//        self.cuteString(str: city.weather?.sunRise)
+		self.tempLabel.text = "\(temp) °C"
+
 		guard let sunRise = self.formatString(str: city.weather?.sunRise)  else { return }
-//		let sunRise = self.cuteString(str: string)
 		self.sunRise.text = "Sunrise: \(sunRise)"
 
 		guard let sunSet = self.formatString(str: city.weather?.sunSet)  else { return }

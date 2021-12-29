@@ -16,8 +16,6 @@ protocol ICityView: AnyObject
 	var numberOfRowHandler: (() -> Int?)? { get set }
 	var didTapCellHandler: ((Int) -> Void)? { get set }
 	var didDeleteCellHandler: ((Int) -> Void)? { get set }
-	
-//	var didTapAddHandler: (() -> Void)? { get set}
 }
 
 final class CityView: UIView
@@ -33,6 +31,8 @@ final class CityView: UIView
 		tableView.register(CityTableViewCell.self, forCellReuseIdentifier: "City")
 		tableView.delegate = self
 		tableView.dataSource = self
+        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.backgroundColor = .systemBlue
 		return tableView
 	}()
 	
@@ -41,7 +41,7 @@ final class CityView: UIView
 extension CityView: ICityView
 {
 	func configure() {
-		self.backgroundColor = .red
+		self.backgroundColor = .systemBlue
 		self.addSubview(self.tableView)
 		self.tableView.snp.makeConstraints { maker in
 			maker.edges.equalToSuperview()
