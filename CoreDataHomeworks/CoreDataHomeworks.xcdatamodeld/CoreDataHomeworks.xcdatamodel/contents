@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="City" representedClassName="City" syncable="YES">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastTemp" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="name" attributeType="String" customClassName="EmployeeClass"/>
+        <attribute name="weatherImage" optional="YES" attributeType="Binary"/>
+        <attribute name="woeId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <elements>
+        <element name="City" positionX="-88.563720703125" positionY="175.660888671875" width="128" height="104"/>
+    </elements>
+</model>
